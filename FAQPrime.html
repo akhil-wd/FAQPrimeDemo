@@ -1,32 +1,39 @@
+<!DOCTYPE html>
 <html>
-<style>
-  a {
-    color: orange;
-  }
-</style>
-<script src="https://decathlononline--partial.sandbox.my.site.com/helpcemter/lightning/lightning.out.js">></script>
-<div data-lightning-out="true"></div>
+<head>
+  <style>
+    a {
+      color: orange;
+    }
+  </style>
+  <script src="https://decathlononline--partial.sandbox.my.site.com/helpcemter/lightning/lightning.out.js"></script>
+</head>
+<body>
+  <div data-lightning-out="true"></div>
   <script>
     const appName = 'c:CallFAQPrimeCaseCreationApp';
     const componentName = 'c:FAQPrimeCaseCreation';
     const lightningEndpoint = 'https://decathlononline--partial.sandbox.my.site.com/helpcemter';
     const targetElement = document.querySelector("[data-lightning-out]");
     const componentAttributes = {
-	"Title" : 'Test',"Team":'B2B',"Articleurl":'www.google.com'
+      "Title" : 'Test',
+      "Team": 'B2B',
+      "Articleurl": 'www.google.com'
     };
     $Lightning.use(
-            appName,
-            function (){
-              $Lightning.createComponent(
-                      componentName,
-                      componentAttributes,
-                      targetElement,
-                      function (cmp){
-                        console.log('lightning component created');
-                      }
-              );
-            },
-            lightningEndpoint
+      appName,
+      function (){
+        $Lightning.createComponent(
+          componentName,
+          componentAttributes,
+          targetElement,
+          function (cmp){
+            console.log('lightning component created');
+          }
+        );
+      },
+      lightningEndpoint
     );
   </script>
+</body>
 </html>
