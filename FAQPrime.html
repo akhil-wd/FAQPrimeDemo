@@ -12,11 +12,13 @@
   <div data-lightning-out="true"></div>
   <script>
     const appName = 'c:CallFAQPrimeCaseCreationApp';
-    const componentName = 'c:testComponet';
+    const componentName = 'c:FAQPrimeCaseCreation';
     const lightningEndpoint = 'https://decathlononline--partial.sandbox.my.site.com/helpcemter';
     const targetElement = document.querySelector("[data-lightning-out]");
     const componentAttributes = {
-     
+      "Title" : 'Test',
+      "Team": 'B2B',
+      "Articleurl": 'www.google.com'
     };
     $Lightning.use(
       appName,
