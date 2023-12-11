@@ -9,30 +9,36 @@
   <script src="https://decathlononline--partial.sandbox.my.site.com/helpcemter/lightning/lightning.out.js"></script>
 </head>
 <body>
-  <div data-lightning-out="true"></div>
+  <iframe id="iframeContainer" width="100%" height="600" frameborder="0"></iframe>
   <script>
     const appName = 'c:CallFAQPrimeCaseCreationApp';
     const componentName = 'c:FAQPrimeCaseCreation';
     const lightningEndpoint = 'https://decathlononline--partial.sandbox.my.site.com/helpcemter';
-    const targetElement = document.querySelector("[data-lightning-out]");
+    const iframeContainer = document.getElementById('iframeContainer');
     const componentAttributes = {
       "Title" : 'Test',
       "Team": 'B2B',
       "Articleurl": 'www.google.com'
     };
-    $Lightning.use(
-      appName,
-      function (){
-        $Lightning.createComponent(
-          componentName,
-          componentAttributes,
-          targetElement,
-          function (cmp){
-            console.log('lightning component created');
-          }
-        );
-      },
-      lightningEndpoint
-    );
+
+    function createLightningComponent() {
+      $Lightning.use(
+        appName,
+        function (){
+          $Lightning.createComponent(
+            componentName,
+            componentAttributes,
+            iframeContainer,
+            function (cmp){
+              console.log('Lightning component created');
+            }
+          );
+        },
+        lightningEndpoint
+      );
+    }
+
+    createLightningComponent();
   </script>
 </body>
+</html>
