@@ -5,62 +5,53 @@
     a {
       color: orange;
     }
-
-    .loader-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(255, 255, 255, 0.7);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
   </style>
   <script src="https://decathlononline--partial.sandbox.my.site.com/helpcemter/lightning/lightning.out.js"></script>
 </head>
 <body>
+  outside iframe
 
-  <!-- Loader -->
-  <div class="loader-container" id="loader">
-    <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+  <div class="slds-spinner slds-spinner_medium slds-is-relative" id="spinner">
+    <span class="slds-assistive-text">Loading...</span>
+    <div class="slds-spinner__dot-a"></div>
+    <div class="slds-spinner__dot-b"></div>
+    <div class="slds-spinner__dot-c"></div>
   </div>
 
-  <div data-lightning-out="true"></div>
+  <iframe id="iframeContainer" width="100%" height="600" frameborder="0">Inside iframe</iframe>
   <script>
     const appName = 'c:CallFAQPrimeCaseCreationApp';
     const componentName = 'c:FAQPrimeCaseCreation';
     const lightningEndpoint = 'https://decathlononline--partial.sandbox.my.site.com/helpcemter';
-    const targetElement = document.querySelector("[data-lightning-out]");
+    const iframeContainer = document.getElementById('iframeContainer');
+    const spinner = document.getElementById('spinner');
     const componentAttributes = {
-      "Title" : 'Test',
-      "Team": 'B2B',
-      "Articleurl": 'www.google.com'
+      "Title": "Test",
+      "Team": "B2B",
+      "Articleurl": "www.google.com",
     };
 
-    // Show loader while creating Lightning component
-    const loader = document.getElementById('loader');
-    loader.style.display = 'flex';
+    function createLightningComponent() {
+      spinner.style.display = "block"; // Show the spinner
 
-    $Lightning.use(
-      appName,
-      function (){
-        $Lightning.createComponent(
-          componentName,
-          componentAttributes,
-          targetElement,
-          function (cmp){
-            console.log('Lightning component created');
+      $Lightning.use(
+        appName,
+        function () {
+          $Lightning.createComponent(
+            componentName,
+            componentAttributes,
+            iframeContainer,
+            function (cmp) {
+              spinner.style.display = "none"; // Hide the spinner
+              console.log("Lightning component created");
+            }
+          );
+        },
+        lightningEndpoint
+      );
+    }
 
-            // Hide loader after component is created
-            loader.style.display = 'none';
-          }
-        );
-      },
-      lightningEndpoint
-    );
+    createLightningComponent();
   </script>
 </body>
 </html>
