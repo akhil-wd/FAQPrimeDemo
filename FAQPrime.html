@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Standalone LWC Example</title>
 
-    <!-- Add a strict CSP header -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; frame-ancestors 'self';">
+    <!-- Updated CSP header to explicitly allow the specified domain -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://decathlononline--partial.sandbox.my.site.com/; frame-ancestors 'self';">
 
 </head>
 <body>
