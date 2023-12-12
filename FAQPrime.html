@@ -5,8 +5,7 @@
     a {
       color: orange;
     }
-
-    .loader-container {
+	 .loader-container {
       position: fixed;
       top: 0;
       left: 0;
@@ -33,14 +32,13 @@
       100% { transform: rotate(360deg); }
     }
   </style>
+  <script src="https://decathlononline--partial.sandbox.my.site.com/helpcemter/lightning/lightning.out.js"></script>
 </head>
 <body>
-
-  <!-- Loader -->
-  <div class="loader-container" id="loader">
+<div class="loader-container" id="loader">
     <div class="loader"></div>
   </div>
-
+  
   <div data-lightning-out="true"></div>
   <script>
     const appName = 'c:CallFAQPrimeCaseCreationApp';
@@ -52,9 +50,7 @@
       "Team": 'B2B',
       "Articleurl": 'www.google.com'
     };
-
-    // Show loader while creating Lightning component
-    const loader = document.getElementById('loader');
+	const loader = document.getElementById('loader');
     loader.style.display = 'flex';
 
     $Lightning.use(
@@ -65,10 +61,8 @@
           componentAttributes,
           targetElement,
           function (cmp){
-            console.log('Lightning component created');
-
-            // Hide loader after component is created
-            loader.style.display = 'none';
+            console.log('lightning component created');
+			loader.style.display = 'none';
           }
         );
       },
