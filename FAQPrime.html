@@ -5,7 +5,7 @@
     a {
       color: orange;
     }
-	 .loader-container {
+    .loader-container {
       position: fixed;
       top: 0;
       left: 0;
@@ -16,6 +16,7 @@
       justify-content: center;
       align-items: center;
       z-index: 9999;
+      display: none; /* Initially hide loader */
     }
 
     .loader {
@@ -35,7 +36,7 @@
   <script src="https://decathlononline--partial.sandbox.my.site.com/helpcemter/lightning/lightning.out.js"></script>
 </head>
 <body>
-<div class="loader-container" id="loader">
+  <div class="loader-container" id="loader">
     <div class="loader"></div>
   </div>
   
@@ -50,24 +51,31 @@
       "Team": 'B2B',
       "Articleurl": 'www.google.com'
     };
-	const loader = document.getElementById('loader');
-    loader.style.display = 'flex';
+    const loader = document.getElementById('loader');
 
-    $Lightning.use(
-      appName,
-      function (){
-        $Lightning.createComponent(
-          componentName,
-          componentAttributes,
-          targetElement,
-          function (cmp){
-            console.log('lightning component created');
-			loader.style.display = 'none';
-          }
-        );
-      },
-      lightningEndpoint
-    );
+    // Delay the loader display by 500 milliseconds (adjust as needed)
+    setTimeout(() => {
+      loader.style.display = 'flex';
+    }, 500);
+
+    // Attach an event listener to load the Lightning component after the page has loaded
+    window.addEventListener('load', () => {
+      $Lightning.use(
+        appName,
+        function (){
+          $Lightning.createComponent(
+            componentName,
+            componentAttributes,
+            targetElement,
+            function (cmp){
+              console.log('lightning component created');
+              loader.style.display = 'none';
+            }
+          );
+        },
+        lightningEndpoint
+      );
+    });
   </script>
 </body>
 </html>
